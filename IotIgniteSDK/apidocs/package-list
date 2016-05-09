@@ -1,0 +1,9 @@
+com.ardic.android.iotignite.callbacks
+com.ardic.android.iotignite.constants
+com.ardic.android.iotignite.enumerations
+com.ardic.android.iotignite.exceptions
+com.ardic.android.iotignite.interfaces
+com.ardic.android.iotignite.listeners
+com.ardic.android.iotignite.nodes
+com.ardic.android.iotignite.things
+com.ardic.android.iotignite.utils
