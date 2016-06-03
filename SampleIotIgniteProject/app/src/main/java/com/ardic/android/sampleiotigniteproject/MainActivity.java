@@ -14,6 +14,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.os.Handler;
 
+import com.ardic.android.connectivity.libwirelessconnection.WifiHelper;
+import com.ardic.android.connectivity.libwirelessconnection.listeners.SimpleWifiConnectionListener;
+
 import java.io.IOException;
 import java.sql.Time;
 import java.util.ArrayList;
@@ -34,23 +37,8 @@ public class MainActivity extends AppCompatActivity implements NsdManager.Discov
     private static final long ESP_HANDLER_PERIOD = 30000L;
     private static final long ESP_HANDLER_DELAY = 40000L;
 
-    private BroadcastReceiver wifiReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
+    private WifiHelper mWifiHelper;
 
-            ConnectivityManager conMan = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo netInfo = conMan.getActiveNetworkInfo();
-            if (netInfo != null && netInfo.getType() == ConnectivityManager.TYPE_WIFI) {
-                Log.i(TAG, "Wifi Active.");
-                // handle nsd if wifi changes...
-            }
-            else {
-                Log.i(TAG, "Don't have Wifi Connection");
-            }
-        }
-    };
-
-    private IntentFilter mIntentFilter = new IntentFilter();
 
 
     @Override
@@ -62,9 +50,40 @@ public class MainActivity extends AppCompatActivity implements NsdManager.Discov
         mNsdManager.discoverServices(
                 SERVICE_TYPE, NsdManager.PROTOCOL_DNS_SD, this);
 
+        mWifiHelper = WifiHelper.WifiHelperFactory.create(getApplicationContext(), new SimpleWifiConnectionListener() {
+            @Override
+            public void onConnecting(NetworkInfo info) {
+                Log.i(TAG,"Connecting...");
+            }
 
-        mIntentFilter.addAction("android.net.wifi.WIFI_STATE_CHANGED");
-        mIntentFilter.addAction("android.net.wifi.STATE_CHANGE");
+            @Override
+            public void onConnected(NetworkInfo info) {
+                Log.i(TAG,"Connected.");
+            }
+
+            @Override
+            public void onDisconnected(NetworkInfo info) {
+                Log.i(TAG,"Disconnected");
+            }
+
+            @Override
+            public void onDisconnecting(NetworkInfo info) {
+                Log.i(TAG,"disconnecting...");
+            }
+
+            @Override
+            public void onSuspended(NetworkInfo info) {
+                Log.i(TAG,"Suspended...");
+            }
+
+            @Override
+            public void onUnknown(NetworkInfo info) {
+                Log.i(TAG,"Unknown...");
+            }
+        });
+
+        Log.i(TAG ,"Wifi Enabled :"  + mWifiHelper.isWifiEnabled());
+
 
 
         new Timer().schedule(new TimerTask() {
@@ -80,8 +99,6 @@ public class MainActivity extends AppCompatActivity implements NsdManager.Discov
             }
         },ESP_HANDLER_DELAY,ESP_HANDLER_PERIOD);
 
-
-        registerReceiver(wifiReceiver,mIntentFilter);
     }
 
 
@@ -95,7 +112,6 @@ public class MainActivity extends AppCompatActivity implements NsdManager.Discov
         for(ESP8266NodeHandler esp : espInstances){
             esp.stop();
         }
-        unregisterReceiver(wifiReceiver);
 
     }
 

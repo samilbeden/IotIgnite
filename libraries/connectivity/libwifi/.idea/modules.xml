@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/libwifi.iml" filepath="$PROJECT_DIR$/libwifi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libwifihelper/app.iml" filepath="$PROJECT_DIR$/libwifihelper/app.iml" />
     </modules>
   </component>
 </project>
