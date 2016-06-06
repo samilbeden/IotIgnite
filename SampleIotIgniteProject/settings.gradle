@@ -1,1 +1,1 @@
-include ':app', ':libwifihelper'
+include ':app', ':libwifihelper', ':bluetooth'

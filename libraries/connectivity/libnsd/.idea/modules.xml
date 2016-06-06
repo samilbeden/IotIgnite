@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/libnsd.iml" filepath="$PROJECT_DIR$/libnsd.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nsdhelper/app.iml" filepath="$PROJECT_DIR$/nsdhelper/app.iml" />
+    </modules>
+  </component>
+</project>
