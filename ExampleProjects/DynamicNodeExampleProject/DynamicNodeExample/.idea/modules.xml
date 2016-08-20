@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/DynamicNodeExample.iml" filepath="$PROJECT_DIR$/DynamicNodeExample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libwifihelper/libwifihelper.iml" filepath="$PROJECT_DIR$/libwifihelper/libwifihelper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nsdhelper/nsdhelper.iml" filepath="$PROJECT_DIR$/nsdhelper/nsdhelper.iml" />
+    </modules>
+  </component>
+</project>
